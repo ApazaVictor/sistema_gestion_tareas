@@ -1,0 +1,38 @@
+# Activar el motor de reescritura
+RewriteEngine On
+
+# Establecer la base del proyecto
+RewriteBase /sistema_gestion_tareas/
+
+# Si el archivo o directorio no existe físicamente
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Redirigir todas las solicitudes al index.php
+RewriteRule ^(.*)$ index.php [QSA,L]
+
+# Configuración de caracteres
+AddDefaultCharset UTF-8
+
+# Prevenir listado de directorios
+Options -Indexes
+
+# Habilitar el módulo de reescritura
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /sistema_gestion_tareas/
+    
+    # Permitir acceso a assets y recursos estáticos
+    RewriteCond %{REQUEST_URI} !^/sistema_gestion_tareas/assets/
+    RewriteCond %{REQUEST_URI} !^/sistema_gestion_tareas/vendor/
+    
+    # Si no es un archivo o directorio existente
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    
+    # Redirigir al index.php
+    RewriteRule ^(.*)$ index.php [QSA,L]
+</IfModule>
+
+# Manejo de errores personalizado
+ErrorDocument 404 /sistema_gestion_tareas/views/404.php

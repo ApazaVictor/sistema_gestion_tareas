@@ -1,0 +1,7 @@
+{
+    "require": {
+        "dompdf/dompdf": "^3.0",
+        "shuchkin/simplexlsxgen": "^1.4",
+        "tecnickcom/tcpdf": "^6.7"
+    }
+}
